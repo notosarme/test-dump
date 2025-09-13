@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Theater</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sulphur+Point:wght@300;400;700&family=Tilt+Warp&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: "Sulphur Point", sans-serif; }
+    h1, h2, h3 {
+      font-family: "Tilt Warp";
+    }
+    #tv {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      pointer-events: none;
+      z-index: 999;
+    }
+    #tv img {
+      width: 900px;
+    }
+    #scanlines {
+      position: absolute;
+      top: 130px;
+      left: 135px;
+      height: 450px;
+      width: 600px;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    #scanlines img {
+      object-fit: cover;
+      opacity: 0.25;
+    }
+    #player {
+      position: absolute;
+      top: 132px;
+      left: 140px;
+      z-index: -999;
+    }
+
+    .paper {
+      background-color: #937a5f;
+      position: absolute;
+      background-image: url("paper-repeating.jpg");
+      background-size: cover;
+      /* background-repeat: no-repeat; */
+      background-blend-mode: overlay;
+      padding: 20px;
+    }
+    .paper h2 {
+      margin: 0;
+    }
+
+    #guide {
+      top: 40px;
+      left: 1000px;
+    }
+
+    #channels {
+      list-style: none; padding: 0; margin: 0;
+    }
+    #channels li { padding-left: 16px; }
+    #channels li::before {
+      content: "①"; 
+      padding-right: 8px; 
+    }
+    #channels li:nth-of-type(2)::before{ content: "②"; }
+    #channels li:nth-of-type(3)::before{ content: "③"; }
+    #channels li:nth-of-type(4)::before{ content: "④"; }
+    #channels li:nth-of-type(5)::before{ content: "⑤"; }
+    #channels li:nth-of-type(6)::before{ content: "⑥"; }
+    #channels li:nth-of-type(7)::before{ content: "⑦"; }
+  </style>
+</head>
+<body>
+  <!-- a tv that shows the playlist -->
+  <!-- a playlist chooser (from youtube playlist) -->
+    <!-- playlist options: saturday morning cartoons, personal selections.... -->
+  <!-- a Creator Recommendation -->
+    <div>
+      <div id="tv">
+        <img src="tvOverlay.png" />
+      </div>
+      <div id="scanlines">
+        <img src="scanlines.png" />
+      </div>
+      <div id="player"></div>
+    </div>
+
+    <div class="paper" id="guide">
+      <h2>TV Guide</h2>
+      <h3>Playlists (Coming soon!)</h3>
+      <ul id="channels">
+        <li>Main Channel</li>
+        <li>Cartoons</li>
+        <li>Anime OVAs</li>
+        <li>Toy Box</li>
+        <li>Game Streams</li>
+      </ul>
+      <h3>Smaller Channel Shoutout</h3>
+        <ul>
+          <li><a href="https://www.youtube.com/channel/UC7HK4m6oorImScykUTHWc5g" target="_blank">RetroGeek Crafts</a></li>
+          <li><a href="https://www.youtube.com/channel/UCEzLfVZlQTK5tIH7RefMnVg" target="_blank">Ada</a></li>
+          <li><a href="https://www.youtube.com/@YapEmporium" target="_blank">Yap Emporium</a></li>
+          <li><a href="https://www.youtube.com/@Asianalysis" target="_blank">Asianalysis</a></li>
+          <li><a href="https://www.youtube.com/@historyandhearsay" target="_blank">History & Hearsay</a></li>
+        </ul>
+    </div>
+
+</body>
+<script>
+  let tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  let firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  let playlist;
+  const theatrePlaylist = 'PLAsDBrih6KlDasub7lwI-rFpDh9i7bmZN';
+  const saturdayMorningPlaylist = '';
+  const toyPlaylist = '';
+  playlist = theatrePlaylist;
+
+  let player;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      height: '420',
+      width: '550',
+      playerVars: {
+        listType: 'playlist',
+        list: playlist,
+        color: 'white',
+        fs: '0',
+        rel: '0'
+      },
+      events: {
+        'onReady': onPlayerReady
+      }
+    });
+  }
+
+  function onPlayerReady(event) {
+    event.target.playVideo();
+    setTimeout(setShuffleFunction, 200);           
+  }
+  function setShuffleFunction(){
+    player.setShuffle(true);
+  }
+
+</script>
+</html>
