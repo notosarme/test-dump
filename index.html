@@ -78,6 +78,8 @@
     #channels li:nth-of-type(5)::before{ content: "⑤"; }
     #channels li:nth-of-type(6)::before{ content: "⑥"; }
     #channels li:nth-of-type(7)::before{ content: "⑦"; }
+    button {  all: unset;  } button:focus { outline: revert; }
+    #guide button {  cursor: pointer; font-weight: bold; text-decoration: underline;}
   </style>
 </head>
 <body>
@@ -85,7 +87,7 @@
   <!-- a playlist chooser (from youtube playlist) -->
     <!-- playlist options: saturday morning cartoons, personal selections.... -->
   <!-- a Creator Recommendation -->
-    <div>
+    <div id="player-container">
       <div id="tv">
         <img src="tvOverlay.png" />
       </div>
@@ -99,11 +101,8 @@
       <h2>TV Guide</h2>
       <h3>Playlists (Coming soon!)</h3>
       <ul id="channels">
-        <li>Main Channel</li>
-        <li>Cartoons</li>
-        <li>Anime OVAs</li>
-        <li>Toy Box</li>
-        <li>Game Streams</li>
+        <li><button onclick="setPlaylist('PLAsDBrih6KlDasub7lwI-rFpDh9i7bmZN')">Main Channel</button></li>
+        <li><button onclick="setPlaylist('PLAsDBrih6KlA2EORzabRacFYnwCYl05IK')">Animations</button></li>
       </ul>
       <h3>Smaller Channel Shoutout</h3>
         <ul>
@@ -114,6 +113,8 @@
           <li><a href="https://www.youtube.com/@historyandhearsay" target="_blank">History & Hearsay</a></li>
           <li><a href="https://www.youtube.com/@NoGoodFigures" target="_blank">No Good Figures</a></li>
         </ul>
+
+        <h3>Go Back?</h3>
     </div>
 
 </body>
@@ -122,12 +123,7 @@
   tag.src = "https://www.youtube.com/iframe_api";
   let firstScriptTag = document.getElementsByTagName('script')[0];
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-  let playlist;
-  const theatrePlaylist = 'PLAsDBrih6KlDasub7lwI-rFpDh9i7bmZN';
-  const saturdayMorningPlaylist = '';
-  const toyPlaylist = '';
-  playlist = theatrePlaylist;
+  let playlist = 'PLAsDBrih6KlDasub7lwI-rFpDh9i7bmZN';
 
   let player;
   function onYouTubeIframeAPIReady() {
@@ -153,6 +149,15 @@
   }
   function setShuffleFunction(){
     player.setShuffle(true);
+  }
+
+  function setPlaylist(playlistId) {
+    const iframe = document.getElementById("player");
+    const div = document.createElement("div");
+    div.id = "player";
+    iframe.parentNode.replaceChild(div, iframe);    
+    playlist = playlistId;
+    onYouTubeIframeAPIReady();
   }
 
 </script>
