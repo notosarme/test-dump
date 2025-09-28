@@ -26,6 +26,9 @@ main {
   height: 100%;
   min-height: 0;
 }
+main {
+  text-align: left;
+}
 aside {
   background-color: #ffffcc;
   padding: 1rem;
