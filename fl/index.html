@@ -3,89 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    img { max-width: 100%;}
-    body {
-      overflow: hidden; width: 100lvw; height: 100lvh; padding: 0; margin: 0;
-      background-color: whi;
-    }
-    #container {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      background-color: white;
-      margin: 12px;
-      height: 600px;
-    }
-    aside {
-      width: 220px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 0 12px;
-    }
-    nav button {
-      margin-bottom: 6px;
-    }
-    .doll {
-      pointer-events: none;
-    }
-    .doll img {
-      object-fit: contain;
-    }
-    .button, button {
-      cursor: pointer;
-      font-weight: bolder;
-      text-align: center;
-      background: silver;
-      border: none;
-      border-radius: 0;
-      box-shadow: inset -1px -1px #0a0a0a,inset 1px 1px #fff,inset -2px -2px grey,inset 2px 2px #dfdfdf;
-      box-sizing: border-box;
-      color: transparent;
-      padding: 4px;
-      width: 100%;
-      text-shadow: 0 0 #222;
-      box-shadow: inset -2px -2px #0a0a0a,inset 1px 1px #0a0a0a,inset 2px 2px #fff,inset -3px -3px grey,inset 3px 3px #dfdfdf;
-    }
-    iframe {
-      height: 100%;
-      width: 100%;
-      border: 0;
-      width: 510px;
-      border: 2px solid black;
-      padding: 12px;
-      box-shadow: 4px 4px 4px #76CCD0;
-      overflow-y: scroll;
-      margin-right: 12px;
-    }
-    @media only screen and (max-width: 800px) {
-      .mobile { display: none;}
-    }
-  </style>
+  <link rel="stylesheet" href="./fl.css" />
   <title>Links</title>
 </head>
-<body>
+<body id="body">
   <div id="container">
     <aside>
       <nav>
-        <button>Fanlistings</button>
-        <button>Webrings</button>
-        <button>Neighbours</button>
-        <button>Cool Sites</button>
-        <button>Archeology</button>
-        <button id="main">Index</button>
+        <button onclick="navigate('fanlists')">Fanlistings</button>
+        <button onclick="navigate('webrings')">Webrings</button>
+        <button onclick="navigate('neighbours')">Neighbours</button>
+        <button onclick="navigate('sites')">Cool Sites</button>
+        <button onclick="navigate('archeology')">Archeology</button>
+        <button onclick="navigate('main')">Index</button>
         <!-- <button>Hide dolls?</div> -->
       </nav>
       <div class="doll"><img src="/Gifs/hk-geocities-janice1126hk-girl.gif" /></div>
     </aside>
     <main>
-      <iframe referrerpolicy="same-origin" src="main.html"></iframe>
+      <iframe id="main-frame" referrerpolicy="same-origin" src="main.html"></iframe>
     </main>
     <div class="doll mobile">
       <img src="/Gifs/os-tan-windows-me.gif" height="600" />
     </div>
   </div>
+
+  <script>
+    function navigate(page) {
+      let body =  document.getElementById("main-frame");
+      body.src = page + '.html'
+    }
+  </script>
   
 </body>
 </html>

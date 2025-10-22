@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
+
+img {
+  max-width: 100%;
+}
+#body {
+  overflow: hidden;
+  width: 100lvw;
+  height: 100lvh;
+  padding: 0;
+  margin: 0;
+}
+#container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  background-color: white;
+  margin: 12px;
+  height: 600px;
+}
+aside {
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 12px;
+}
+nav button {
+  margin-bottom: 6px;
+}
+.doll {
+  pointer-events: none;
+}
+.doll img {
+  object-fit: contain;
+}
+h1 { border-bottom: 2px solid black; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -ms-border-radius: 4px; -o-border-radius: 4px; }
+.button,
+button {
+  cursor: pointer;
+  font-weight: bolder;
+  text-align: center;
+  background: silver;
+  border: none;
+  border-radius: 0;
+  box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey,
+    inset 2px 2px #dfdfdf;
+  box-sizing: border-box;
+  color: transparent;
+  padding: 4px;
+  width: 100%;
+  text-shadow: 0 0 #222;
+  box-shadow: inset -2px -2px #0a0a0a, inset 1px 1px #0a0a0a, inset 2px 2px #fff,
+    inset -3px -3px grey, inset 3px 3px #dfdfdf;
+}
+iframe {
+  height: 100%;
+  width: 100%;
+  border: 0;
+  width: 510px;
+  border: 2px solid black;
+  box-shadow: 4px 4px 4px #76ccd0;
+  margin-right: 12px;
+}
+
+#main {
+  font-family: "Handlee", sans-serif;
+  overflow-y: scroll;
+  padding: 12px;
+  font-size: small;
+}
+
+.center { text-align: center; }
+
+#fl img {
+  margin: 2px;
+}
+
+@media only screen and (max-width: 800px) {
+  .mobile {
+    display: none;
+  }
+}
